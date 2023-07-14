@@ -7,7 +7,7 @@ export default class Formulario extends Component {
         <h2 className='font-black text-3xl text-center'>
             Seguimiento de Pacientes
             </h2>
-            <p className='text-lg mt-5 text-center mb-10'>
+            <p className='text-xl mt-5 text-center mb-10'>
                 Añade pacientes y {''}
                <span className='text-indigo-600 font-bold'>adminístralos</span> 
             </p>
