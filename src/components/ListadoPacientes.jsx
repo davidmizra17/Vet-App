@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Paciente from './Paciente'
 
-export default class ListadoPacientes extends Component {
-  render() {
+const ListadoPacientes = () => {
     return (
     <div className="md:w-1/2 lg:w-3/5 h-screen overflow overflow-y-scroll">
       <h2 className='font-black text-3xl text-center '>Listado de Pacientes</h2>
@@ -23,4 +22,5 @@ export default class ListadoPacientes extends Component {
     </div>
     )
   }
-}
+
+export default ListadoPacientes;

@@ -1,9 +1,25 @@
 import React, { Component } from 'react'
+import { useState, useEffect } from 'react'
+ 
 
-export default class Formulario extends Component {
-  render() {
+const Formulario = () => {
+  
+    const [nombre, setNombre] = useState('');
+    const [propietario, setPropietario] = useState('');
+    const [email, setEmail] = useState('');
+    const [fecha, setFecha] = useState('');
+    const [sintomas, setSintomas] = useState('');
+    
+
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("enviando form"); 
+    }
+
+    
     return (
-      <div className="md:w-1/2 lg:w-2/5">
+      <div className="md:w-1/2 lg:w-2/5 mx-5">
         <h2 className='font-black text-3xl text-center'>
             Seguimiento de Pacientes
             </h2>
@@ -11,16 +27,20 @@ export default class Formulario extends Component {
                 Añade pacientes y {''}
                <span className='text-indigo-600 font-bold'>adminístralos</span> 
             </p>
-            <form className='bg-white shadow-md rounded-lg py-10 px-5 mb-10' >
+            <form onSubmit={handleSubmit}
+            className='bg-white shadow-md rounded-lg py-10 px-5 mb-10' >
                 <div>
                     <label htmlFor="mascota" className='block text-gray-700 uppercase'>
-                        Nombre Mascota</label>
+                        Nombre Mascota
+                        </label>
 
                     <input 
-                    id='mascota'
+                    id='mascota' 
                     type="text" 
                     placeholder='Nombre de la mascota'
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
+                    value={nombre}
+                    onChange={ (e) => setNombre(e.target.value) }
                     />
                 </div>
 
@@ -33,6 +53,8 @@ export default class Formulario extends Component {
                     type="text" 
                     placeholder='Nombre del propietario'
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
+                    value={propietario}
+                    onChange={ (e) => setPropietario(e.target.value) }
                     />
                 </div>
                 <div className='mt-5'>
@@ -44,6 +66,8 @@ export default class Formulario extends Component {
                     type="email" 
                     placeholder='Email propietario'
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
+                    value={email}
+                    onChange={ (e) => setEmail(e.target.value) }
                     />
                 </div>
 
@@ -55,6 +79,8 @@ export default class Formulario extends Component {
                     id='alta'
                     type="date" 
                     className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
+                    value={fecha}
+                    onChange={ (e) => setFecha(e.target.value) }
                     />
                 </div>
 
@@ -62,7 +88,14 @@ export default class Formulario extends Component {
                     <label htmlFor="sintomas" className='block text-gray-700 uppercase'>
                         Sintomas</label>
 
-                    <textarea name="sintomas" id="sintomas" cols="50" rows="5"  className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md' placeholder='Describa los síntomas que presente el animal'></textarea>
+                    <textarea 
+                    name="sintomas" 
+                    id="sintomas" 
+                    cols="50" rows="5"  
+                    className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md' placeholder='Describa los síntomas que presente el animal'
+                    value={sintomas}
+                    onChange={ (e) => setSintomas(e.target.value) }
+                    ></textarea>
                     
                 </div>
 
@@ -79,5 +112,6 @@ export default class Formulario extends Component {
 
         
     )
-  }
+  
 }
+export default Formulario;
