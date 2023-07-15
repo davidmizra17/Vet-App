@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { useState, useEffect } from 'react'
+import Error from './Error';
  
 
-const Formulario = () => {
+const Formulario = ({ pacientes, setPacientes }) => {
   
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
@@ -19,11 +20,30 @@ const Formulario = () => {
 
         // FORM VALIDATION
         if([nombre, propietario, email, fecha, sintomas].includes('')){
-            alert("Hay al menos un campo vacío")
+            console.log("Hay al menos un campo vacío")
             setError(true);
             return;
         }
         setError(false);
+
+        //OBJETO PACIENTE
+        const objetoPaciente = {
+            nombre,
+            propietario,
+            email,
+            fecha,
+            sintomas
+        }
+
+        setPacientes([...pacientes, objetoPaciente]);
+
+        //REINICIAMOS EL FORM
+        setEmail('')
+        setFecha('')
+        setNombre('')
+        setSintomas('')
+        setPropietario('')
+
         
         console.log("enviando form"); 
     }
@@ -41,10 +61,7 @@ const Formulario = () => {
             <form onSubmit={handleSubmit}
             
             className='bg-white shadow-md rounded-lg py-10 px-5 mb-10' >
-                {error && 
-                (<div className='bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded'>
-                    <p>Todos los campos son obligatorios</p>
-                </div>)} 
+                {error && <Error mensaje='Todos los campos son obligatorios'/>} 
                 
                 <div className='mb-5'>
                     <label htmlFor="mascota" className='block text-gray-700 uppercase'>
